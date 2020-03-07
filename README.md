@@ -41,12 +41,12 @@ export default create({
 </template>
 
 <script>
-import userStore from './store/user-store
+import userStore from './store/user-store'
 
 export default {
-  computed: userStore.pick(['user', 'isPro'])
+  computed: userStore.map(['user', 'isPro']),
   methods: {
-    ...userStore.pick(['changePlan']),
+    ...userStore.map(['changePlan']),
     someLocalMethod() {},
   }
 }

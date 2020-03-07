@@ -5,17 +5,14 @@ function create(object) {
 
   return {
     state,
-    pick(keys) {
-      const mapped = {};
-      for (const key of keys) {
-        const isFn = typeof state[key] === "function";
-        mapped[key] = isFn ? state[key].bind(state) : () => state[key];
-      }
-      return mapped;
+    map(keys) {
+      const res = {};
+      keys.forEach(function mapKey(key) {
+        res[key] = typeof state[key] === "function" ? state[key].bind(state) : () => state[key];
+      })
+      return res;
     }
   };
 }
 
-module.exports = {
-  create,
-}
+module.exports = { create }
