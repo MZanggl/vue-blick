@@ -1,0 +1,22 @@
+{
+  "name": "vue-blick",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node japaFile.js"
+  },
+  "author": "Michael Zanggl",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MZanggl/vue-blick"
+  },
+  "peerDependencies": {
+    "vue": ">= 2.6.0"
+  },
+  "devDependencies": {
+    "japa": "^3.0.1",
+    "vue": "^2.6.11"
+  }
+}
