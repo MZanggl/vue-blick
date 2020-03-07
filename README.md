@@ -21,7 +21,7 @@ export default create({
     plan: 'yearly'
   },
 
-  isPro() { // computed fields/getters
+  get isPro() { // computed fields/getters
     return Boolean(this.user.plan)
   },
 
@@ -52,5 +52,9 @@ export default {
 }
 </script>
 ```
+
+### Outside of vue templates
+
+You can also access the raw observable state through `store.state`. Maybe you want to call a method from one store to another.
 
 ### That's it!
