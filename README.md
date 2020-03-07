@@ -44,11 +44,7 @@ export default create({
 import userStore from './store/user-store'
 
 export default {
-  computed: userStore.map(['user', 'isPro']),
-  methods: {
-    ...userStore.map(['changePlan']),
-    someLocalMethod() {},
-  }
+  mixins: [ userStore.map('user', 'isPro', 'changePlan') ]
 }
 </script>
 ```

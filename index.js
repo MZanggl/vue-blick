@@ -5,10 +5,14 @@ function create(object) {
 
   return {
     state,
-    map(keys) {
-      const res = {};
+    map(...keys) {
+      const res = { computed: {}, methods: {} };
       keys.forEach(function mapKey(key) {
-        res[key] = typeof state[key] === "function" ? state[key].bind(state) : () => state[key];
+        if (typeof state[key] === "function") {
+          res.methods[key] = state[key].bind(state)
+        } else {
+          res.computed[key] = function compute() { return state[key] }
+        }
       })
       return res;
     }
