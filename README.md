@@ -11,23 +11,20 @@ Super Simple State Management
 1. Create your store
 
 ```javascript
-// store/user-store.js
+// store/alert-store.js
 
 import { create } from 'vue-blick'
 
 export default create({
-  user: { // state
-    id: 1,
-    plan: 'yearly'
+  message: 'Hello', // state
+
+  get reversedMessage() { // computed fields/getters
+    return this.message.split('').reverse().join('')
   },
 
-  get isPro() { // computed fields/getters
-    return Boolean(this.user.plan)
-  },
-
-  async changePlan(plan) { // methods/actions
+  async setMessage(message) { // methods/actions
     // await fetch(...)
-    this.user.plan = plan
+    this.message = message
   }
 })
 ```
@@ -36,15 +33,16 @@ export default create({
 
 ```vue
 <template>
- user {{ user.id }} is {{ isPro ? 'a pro user' : 'not a pro user' }}.
- <button @click="changePlan('monthly')">Change to monthly plan</button>
+  <div>alert: {{ message }}</div>
+  <div>reversed alert: {{ reversedMessage }}</div>
+ <button @click="setMessage('World')">alert!</button>
 </template>
 
 <script>
-import userStore from './store/user-store'
+import alertStore from './store/alert-store'
 
 export default {
-  mixins: [ userStore.map('user', 'isPro', 'changePlan') ]
+  mixins: [ alertStore.map('message', 'reversedMessage', 'setMessage') ]
 }
 </script>
 ```
